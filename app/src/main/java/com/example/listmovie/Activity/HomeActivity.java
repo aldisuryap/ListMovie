@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.listmovie.Fragment.FavoriteFragments;
 import com.example.listmovie.Fragment.NowPlayingFragments;
+import com.example.listmovie.Fragment.UpComingFragments;
 import com.example.listmovie.Preferences.Preferences;
 import com.example.listmovie.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,6 +23,8 @@ public class HomeActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private FragmentManager manager = getSupportFragmentManager();
     private Fragment nowPlaying = new NowPlayingFragments();
+    private Fragment favoriteFragment = new FavoriteFragments();
+    private Fragment upComingFragment = new UpComingFragments();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -31,6 +35,14 @@ public class HomeActivity extends AppCompatActivity {
                 case R.id.navigation_now_playing:
                     nowPlaying = new NowPlayingFragments();
                     manager.beginTransaction().replace(R.id.fragment_container, nowPlaying).commit();
+                    return true;
+                case R.id.navigation_favorite:
+                    favoriteFragment = new FavoriteFragments();
+                    manager.beginTransaction().replace(R.id.fragment_container, favoriteFragment).commit();
+                    return true;
+                case R.id.navigation_up_coming:
+                    upComingFragment = new UpComingFragments();
+                    manager.beginTransaction().replace(R.id.fragment_container, upComingFragment).commit();
                     return true;
             }
             return false;
